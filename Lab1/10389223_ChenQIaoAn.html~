@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="description" content="About Me"/>
+		<meta charset="utf-8"/>
+		<title>About Me</title>
+	</head>
+	<body>
+		<link href="aboutme-style.css" type="text/css" rel="stylesheet" media="screen"/>
+		
+		<h1>About QiaoAn Chen</h1>
+		<p>My name is  QiaoAn Chen. I am a very <b>friendly</b> and <b>patient</b> boy.</p>
+
+		<h2>My classes at SYSU</h2>
+		<ul>
+			<li>Computer Networking</li>
+			<li>Compilers Principles</li>
+			<li>Communication theory</li>
+			<li>Modern programming in Web</li>
+		</ul>
+
+		<h2>My favorite books</h2>
+		<ol>
+			<li>Hackers and Painters: Big Ideas from the Computer Age(<a href="http://book.douban.com/subject/6021440/">DOUBAN</a>)</li>
+			<li>Shakugan No Shana(<a href="http://book.douban.com/subject/5275432/">DOUBAN</a>)</li>
+			<li>Pride and Prejudice(<a href="http://book.douban.com/subject/1885224/">DOUBAN</a>)</li>
+		</ol>
+ 
+		<h2>My Moods</h2>
+		<p>
+			Cool:
+	       		<img src="http://www.raywu.cn/plugin/windsphoto/photofile/20108/201082293236137.jpg" height=200 width=200 alt="Cool"/>
+		       	Sad:
+			<img src="http://www.just-marvel-x-men.com/image-files/sad-face-small.jpg" height=200 width=200 alt="Sad"/>
+			</p> 
+
+		<h2>My Best Friends</h2>
+		<ul>
+			<li>Unknown: Who is it?</li>
+			<li>Unknown: Who is it?</li>
+		</ul>
+
+		<h3>HTML5 & W3C CSS Validator</h3>
+		<p>
+			<a href="http://validator.w3.org/check/referer">
+				<img src="http://www.w3.org/Icons/w3cmember.png" alt="HTML5">
+			</a>
+			<a href="http://jigsaw.w3.org/css-validator/check/referer">
+				<img src="http://jigsaw.w3.org/css-validator/images/vcss" alt="W3C"/>
+			</a>
+		</p>
+
+	</body>
+</html>

@@ -1,0 +1,77 @@
+/*body that has an image non-scrollable background.
+*All text in this page should be 11pt and its font-family are followed.
+*/
+body
+{
+	background:  white;
+	background-image:url(http://222.200.185.14/public/hw1/silverware.jpg );
+	background-attachment: fixed;
+	color: rgb(64,64,64);
+	font-size: 11pt;
+	font-family: Georgia, Garamond, serif; 
+}
+
+
+/*Replace the unorder list items icon with a pie icon.
+*/
+ul li
+{
+	list-style-image: url(" http://222.200.185.14/public/hw1/pie_icon.gif");
+}
+
+/*All headings should be underline and orange.
+*Additionally, they should have a white-gray background color.
+*/
+h1,h2,h3,h4,h5,h6
+{
+	color: rgb(164,164,0);
+	background:rgb(240,240,240);
+	font-family: "Century Gothic", Futura, Verdana, sans-serif;
+	text-decoration: underline;
+	letter-spacing: 0.2em;
+} 
+
+
+/*The referenced text should be italic.
+*The background of this rectangle should be yellow.
+*/
+blockquote
+{
+	background: rgb(255,255,200);
+	font-style: italic;
+}
+
+a
+{
+	color: rgb(164,164,0);
+}
+
+/*Add red bottom border to every part of this page.
+*/
+.subDiv
+{
+	border-bottom: 2px solid rgb(252,157,154)
+}
+
+
+.majorStep
+{
+	font-weight: bold;
+}
+
+/*Main headings should be center.
+*/
+.mainHeadings
+{
+	text-align: center;
+	font-size: 22pt;
+	font-weight: bold;
+}
+
+.subHeadings
+{
+	font-size: 18pt;
+	font-weight: normal;
+	font-variant: normal;
+	font-style: normal;
+}
