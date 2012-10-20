@@ -1,0 +1,214 @@
+/*
+*The body should have no margin and use the background.png
+*as its background. Additionally, background.png should repeat
+*horizontally and vertically.
+*/
+ body
+{
+	background-image: url(http://222.200.185.14/public/hw2/background.png);
+	margin: 0;
+	padding: 0;
+}
+
+/*
+*All text in the body should have 8pt font-size.
+*/
+*
+{
+	font-size: 8pt;
+	font-family: Verdana, Tahoma, sans-serif;
+}
+
+
+/*
+*The quotation should be bold font.
+*/
+q
+{
+	font-weight: bold;
+}
+
+/*
+*A banner picture should have bannerbackground.png as its background.
+*/
+.bannerDiv
+{
+	background-image: url(http://222.200.185.14/public/hw2/bannerbackground.png);
+	background-repeat: repeat-x;
+}
+
+/*
+*Tmnt title;
+*/
+.movieHeadding
+{
+	font-size: 24pt;
+	text-align: center;
+	font-weight: bold;
+	font-family: Tahoma, Verdana, sans-serif;
+}
+
+/*
+*The content div. It shoule be 800px length with a 4px gray border.
+*Also, it should be center.
+*/
+.contentDiv
+{
+	width: 800px;
+	border: 4px solid gray;
+	margin-right: auto;
+	margin-left: auto;
+	overflow: hidden;
+}
+
+/*
+*Rotten rating heading, which is 550px width and has a 
+*rottenbackground.png as its background.
+*/
+.rottenRatingDiv
+{
+	width: 550px;
+	margin-left: 0;
+	background-image: url(http://222.200.185.14/public/hw2/rottenbackground.png);
+	background-repeat: repeat-x;
+	float: left;
+}
+
+/*rottenRatingImage*/
+#rottenRatingImage
+{
+	vertical-align: middle;
+}
+
+/*32%*/
+#rottenRatingText
+{
+	font-size: 48pt;
+	font-weight: bold;
+	color: red;
+	vertical-align: bottom;
+}
+
+/*88 reviews total*/
+#rottenViewsText
+{
+	font-size: 8pt;
+	color: white;
+	vertical-align: -25px;
+}
+
+/*Comments of the content. It should have 550px width.*/
+.contentRatingDiv
+{
+	width: 550px;
+	margin:0;
+	overflow: hidden;
+}
+
+/*
+*Each comment's width is 0.47 of its parents width.
+*And each comment part should have a length of 0.2 of its parents width
+*that seperates each other.
+*They should display as a 2 column grid.
+*Honestly speaking, I adjust their location so that they look more beautiful
+*because I can not control each size of them.
+*/
+.ratingDetailDiv
+{
+	margin-left: 2%;
+	margin-bottom: 3em;
+}
+
+.ratingDetailsDiv
+{
+	width: 47%;
+	float: left;
+}
+
+
+/*
+*Comment style.
+*/
+.ratingQuote
+{
+	font-size: 8pt;
+	background-color: #E1D697;
+	border:2px solid gray;
+	padding: 8pt;
+	overflow: hidden;
+}
+
+/*
+*Rotten or fresh image style.
+*/
+.ratingImage
+{
+	float: left;
+	vertical-align: top;
+	margin-right:  5px;
+}
+
+/*
+*Reviewer iamge.
+*/
+.reviewerImage
+{
+	float: left;
+	vertical-align: top;
+	margin-right: 5px;
+}
+
+/*
+*Reviewer's location style.
+*/
+.locationSpan
+{
+	font-style: italic;
+}
+
+/*
+*OverView style. It should be located at right of the outer border.
+*It has a green background.
+*/
+.overViewDiv
+{
+	float: right;
+	width: 250px;
+	background-color: #A2B964;
+	font-size: 8pt;
+	font-family: Arial, sans-serif;
+	padding-bottom: 10px;
+}
+
+/*
+*Imformation(starring,director,etc) style.
+*/
+dt
+{
+	font-weight: bold;
+}
+
+dl
+{
+	margin: 1em;
+}
+/*
+*Information margin.
+*/
+dd
+{
+	margin: 1em;
+}
+
+/*
+*The bottom bar style.
+*/
+.viewBar
+{
+	float: right;
+	width: 800px;
+	text-align: center;
+	background-color:  #A2B964;
+	margin: 0;
+	padding: 5px;
+}
