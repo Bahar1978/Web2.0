@@ -94,7 +94,7 @@ q
 {
 	font-size: 8pt;
 	color: white;
-	vertical-align: bottom;
+	vertical-align: -25px;
 }
 
 /*Comments of the content. It should have 550px width.*/
@@ -115,11 +115,16 @@ q
 */
 .ratingDetailDiv
 {
-	width:47%;
 	margin-left: 2%;
-	float: left;
 	margin-bottom: 3em;
 }
+
+.ratingDetailsDiv
+{
+	width: 47%;
+	float: left;
+}
+
 
 /*
 *Comment style.
