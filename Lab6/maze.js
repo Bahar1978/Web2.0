@@ -18,9 +18,7 @@ window.onload = function()
 	var e = document.getElementById("end");
 	e.onmouseover = Finish;
 
-	/*disallow cheating*/
-	var maze = document.getElementById("maze");
-	maze.onmouseout = MouseOut;
+
 }
 
 //0 for not start, 1 for start, -1 for lose
@@ -41,24 +39,7 @@ function MouseOver(event)
 	}
 }
 
-function MouseOut(event)
-{
-	var pos = window.event;
-	alert(pos);
-	alert(pos.clientX);
-	if (status == 1 )
-	{
-		var doms = document.getElementsByClassName('boundary');
-		for (var i = 0; i < doms.length; i ++)
-		{
-			if (doms[i].className == "boundary example")
-				continue;
-			doms[i].style.background = "#ff8888";
-		}
-		status = -1;
-		document.getElementById('status').innerHTML = "You Lose!";
-	}
-}
+
 
 function Start(event)
 {
