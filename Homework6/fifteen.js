@@ -1,3 +1,6 @@
+ //Extra features:
+ //Animations and/or transitions
+ //Multiple backgrounds
  window.onload = function()
  {
  	PuzzleInitialize();
@@ -52,6 +55,34 @@ var size = 4;
  	element.style.left = y + "px";
  }
 
+ function TileSetLocationAnimation (element,fromIndex,toIndex)
+ {
+ 	var fromI = Math.floor(fromIndex/size), fromJ = fromIndex % size;
+ 	var toI = Math.floor(toIndex/size), toJ = toIndex % size;
+ 	var fromX = fromI * (400/size), fromY = fromJ * (400/size);
+ 	var toX = toI * (400/size), toY = toJ * (400/size);
+
+ 	//Same row move
+ 	if (fromX == toX)
+ 	{
+ 		var step = (toY - fromY) / 5;
+ 		for (var i = 1; i <= 5; i ++)
+ 			setTimeout(TileSetLocationPosition,i * 50,element,fromX,fromY + step * i);
+ 	}	
+ 	else
+ 	{
+ 		var step = (toX - fromX) / 5;
+ 		for (var i = 1; i <= 5; i ++)
+ 			setTimeout(TileSetLocationPosition,i* 50,element,fromX + step * i,fromY);
+ 	}
+  }
+
+function TileSetLocationPosition (element,x,y)
+{
+	element.style.top = x + "px";
+	element.style.left = y + "px";
+}
+
  function TileSetBackground(element,index)
  {
  	var i = Math.floor(index / size), j = index % size;
@@ -77,7 +108,8 @@ function TileGetId(element)
  	{
  		tileIndex[to] = tileIndex[index];
  		tileIndex[index] = 0;
- 		TileSetLocation(this,to);
+ 		TileSetLocationAnimation(this,index,to);
+ 		//TileSetLocation(this,to);
  		TileSetId(this,to);
  	}
  }
@@ -106,7 +138,8 @@ function TileGetId(element)
  		var to = TileCanMove(index);
  		tileIndex[to] = tileIndex[index];
  		tileIndex[index] = 0;
- 		TileSetLocation(temp,to);
+ 		TileSetLocationAnimation(this,index,to);
+ 		//TileSetLocation(temp,to);
  		TileSetId(temp,to);
 
  		array = new Array();
@@ -116,11 +149,11 @@ function TileGetId(element)
  function BackgroundChange(event)
  {
  	var records = document.getElementById("selectPic").getElementsByTagName("input");
- 	var backgroundUrl = "background.jpg";
+ 	var backgroundUrl = "https://raw.github.com/apir8181/Web2.0/master/Homework6/background.jpg";
 
- 	if (records[1].checked == true) backgroundUrl = "background2.jpg";
- 	else if (records[2].checked == true) backgroundUrl = "background3.jpg";
- 	else if (records[3].checked == true) backgroundUrl = "background4.jpg";
+ 	if (records[1].checked == true) backgroundUrl = "https://raw.github.com/apir8181/Web2.0/master/Homework6/background2.jpg";
+ 	else if (records[2].checked == true) backgroundUrl = "https://raw.github.com/apir8181/Web2.0/master/Homework6/background3.jpg";
+ 	else if (records[3].checked == true) backgroundUrl = "https://raw.github.com/apir8181/Web2.0/master/Homework6/background4.jpg";
 
  	var puzzles = document.getElementById("puzzlearea").getElementsByTagName("div");
  	for (var i = 0; i < puzzles.length; i ++)
