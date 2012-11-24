@@ -1,4 +1,5 @@
 //All extra features have been completed
+"use strict";
  window.onload = function()
  {
  	//Play controls
@@ -20,19 +21,37 @@
  	turboSpeed.addEventListener('click',ChangeSpeed);
 
  	IdleState();
- }
+ };
 
 //Change the animation
 function OnAnimationChanged(event)
 {
 	var textArea = document.getElementById("displayarea");
 	var record = this.getElementsByTagName("option");
-	if (record[0].selected)		textArea.value = blank;	
-	else if (record[1].selected)	textArea.value = exercise;
-	else if (record[2].selected)	textArea.value = juggler;
-	else if (record[3].selected)	textArea.value = bike;
-	else if (record[4].selected)	textArea.value = dive;
-	else if (record[5].selected)	textArea.value = custon;
+	if (record[0].selected)		
+	{
+		textArea.value = blank;	
+	}
+	else if (record[1].selected)	
+	{
+		textArea.value = exercise;
+	}
+	else if (record[2].selected)
+	{
+		textArea.value = juggler;
+	}
+	else if (record[3].selected)
+	{
+		textArea.value = bike;
+	}
+	else if (record[4].selected)
+	{
+		textArea.value = dive;
+	}
+	else if (record[5].selected)
+	{
+		textArea.value = custon;
+	}
 }
 
 //change font size in displayarea
@@ -40,15 +59,15 @@ function OnFontSizeChanged (event)
 {
 	var textArea = document.getElementById("displayarea");
 	var record = this.getElementsByTagName("input");
-	if (record[0].checked == true)
+	if (record[0].checked)
 	{
 		textArea.style.fontSize = "7pt";
 	}
-	else if (record[1].checked == true)
+	else if (record[1].checked)
 	{
 		textArea.style.fontSize = "12pt";
 	}
-	else if (record[2].checked == true)
+	else if (record[2].checked)
 	{
 		textArea.style.fontSize = "24pt";
 	}  
@@ -118,8 +137,14 @@ function PlayState()
 //turbo speed control
 function ChangeSpeed(event)
 {
-	if (this.checked == true)	speed = 50;
-	else speed = 200;
+	if (this.checked)
+	{
+		speed = 50;
+	}
+	else
+	{
+		speed = 200;
+	}
 }
 //custon string
 var custon = 

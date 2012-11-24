@@ -1,14 +1,15 @@
  //Extra features:
  //Animations and/or transitions
  //Multiple backgrounds
+ "use strict";
  window.onload = function()
  {
  	PuzzleInitialize();
  	document.getElementById("shufflebutton").onclick = OnShuffle;
  	document.getElementById("selectPic").onclick = BackgroundChange;
- }
+ };
 
-var tileIndex = new Array();
+var tileIndex = [];
 var size = 4;
 
  function PuzzleInitialize()
@@ -67,13 +68,17 @@ var size = 4;
  	{
  		var step = (toY - fromY) / 5;
  		for (var i = 1; i <= 5; i ++)
+ 		{
  			setTimeout(TileSetLocationPosition,i * 50,element,fromX,fromY + step * i);
+ 		}
  	}	
  	else
  	{
  		var step = (toX - fromX) / 5;
  		for (var i = 1; i <= 5; i ++)
+ 		{
  			setTimeout(TileSetLocationPosition,i* 50,element,fromX + step * i,fromY);
+ 		}
  	}
   }
 
@@ -116,22 +121,38 @@ function TileGetId(element)
 
  function TileCanMove(index)
  {
- 	if (index - size >= 0  && tileIndex[index - size] == 0) return index - size;
- 	if (index + size <  size * size && tileIndex[index + size] == 0) return index + size;
- 	if (index - 1 >= 0 && index % 4 != 0 && tileIndex[index - 1] == 0) return index - 1;
- 	if (index + 1 < size * size && index % 4 != 3 && tileIndex[index + 1] == 0) return index + 1;
+ 	if (index - size >= 0  && tileIndex[index - size] == 0) 
+ 	{
+ 		return index - size;
+ 	}
+ 	if (index + size <  size * size && tileIndex[index + size] == 0) 
+ 	{
+ 		return index + size;
+ 	}
+ 	if (index - 1 >= 0 && index % 4 != 0 && tileIndex[index - 1] == 0) 
+ 	{
+ 		return index - 1;
+ 	}
+ 	if (index + 1 < size * size && index % 4 != 3 && tileIndex[index + 1] == 0) 
+ 	{	
+ 		return index + 1;
+ 	}
  	return -1;
  }
 
  function OnShuffle (event)
  {
- 	var array = new Array();
+ 	var array = [];
  	for (var i = 0; i < 10; i ++)
  	{
  		var records = document.getElementById("puzzlearea").getElementsByTagName("div");
  		for (var j = 0; j < records.length; j ++)
+ 		{
  			if ( TileCanMove( TileGetId(records[j]) ) != -1 ) 
+ 			{	
  				array[array.length] = records[j];
+ 			}
+ 		}
 
  		var temp = array[Math.floor( Math.random() * array.length)];
  		var index = TileGetId(temp);
@@ -142,7 +163,7 @@ function TileGetId(element)
  		//TileSetLocation(temp,to);
  		TileSetId(temp,to);
 
- 		array = new Array();
+ 		array = [];
  	}
  }
 
@@ -151,9 +172,18 @@ function TileGetId(element)
  	var records = document.getElementById("selectPic").getElementsByTagName("input");
  	var backgroundUrl = "https://raw.github.com/apir8181/Web2.0/master/Homework6/background.jpg";
 
- 	if (records[1].checked == true) backgroundUrl = "https://raw.github.com/apir8181/Web2.0/master/Homework6/background2.jpg";
- 	else if (records[2].checked == true) backgroundUrl = "https://raw.github.com/apir8181/Web2.0/master/Homework6/background3.jpg";
- 	else if (records[3].checked == true) backgroundUrl = "https://raw.github.com/apir8181/Web2.0/master/Homework6/background4.jpg";
+ 	if (records[1].checked) 
+ 	{
+ 		backgroundUrl = "https://raw.github.com/apir8181/Web2.0/master/Homework6/background2.jpg";
+ 	}
+ 	else if (records[2].checked) 
+ 	{
+ 		backgroundUrl = "https://raw.github.com/apir8181/Web2.0/master/Homework6/background3.jpg";
+ 	}
+ 	else if (records[3].checked)
+ 	{
+ 		backgroundUrl = "https://raw.github.com/apir8181/Web2.0/master/Homework6/background4.jpg";
+ 	}
 
  	var puzzles = document.getElementById("puzzlearea").getElementsByTagName("div");
  	for (var i = 0; i < puzzles.length; i ++)
