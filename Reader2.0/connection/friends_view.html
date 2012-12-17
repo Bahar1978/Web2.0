@@ -1,0 +1,30 @@
+<html>
+	<head>
+		<title>Login</title>
+	</head>
+
+	<body>
+		<h3>Make Friends</h3>
+		<form action="friends_controler.php?flag=make" method="POST">
+			uid1<input type="text" name="uid1" /></br>
+			uid2<input type="text" name="uid2"/></br>
+			<input type="submit"/>
+		</form>
+
+
+		<h3>Query Friends</h3>
+		<form action="friends_controler.php?flag=query" method="POST">
+			uid1<input type="text" name="uid1" /></br>
+			uid2<input type="text" name="uid2"/></br>
+			<input type="submit"/>
+		</form>
+
+
+		<h3>Get Frineds</h3>
+		<form action="friends_controler.php?flag=get" method="POST">
+			uid<input type="text" name="uid" /></br>
+			<input type="submit"/>
+		</form>
+
+	</body>
+</html>

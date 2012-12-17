@@ -1,0 +1,33 @@
+<html>
+	<head>
+		<title>Notes</title>
+	</head>
+
+	<body>
+		<h3>Create Notes</h3>
+		<form action="notes_controler.php?flag=create" method="POST">
+			description<input type="text" name="description" /></br>
+			title<input type="text" name="title"/></br>
+			uid<input type="text" name="uid"/></br>
+			oid<input type="text" name="oid"/></br>
+			<input type="submit"/>
+		</form>
+
+		<h3>Delete Notes</h3>
+		<form action="notes_controler.php?flag=delete" method="POST">
+			nid<input type="text" name="nid" /></br>
+			<input type="submit"/>
+		</form>
+
+		<h3>Update Notes</h3>
+		<form action="notes_controler.php?flag=update" method="POST">
+			nid<input type="text" name="nid" /></br>
+			title<input type="text" name="title"/></br>
+			description<input type="text" name="description"/></br>
+			<input type="submit"/>
+		</form>
+
+
+
+	</body>
+</html>

@@ -1,0 +1,30 @@
+<html>
+	<head>
+		<title>Objects</title>
+	</head>
+
+	<body>
+		<h3>Create OBject</h3>
+		<form action="object_controler.php?flag=create" method="POST">
+			description<input type="text" name="description" /></br>
+			name<input type="text" name="name"/></br>
+			uid<input type="text" name="uid"/></br>
+			<input type="submit"/>
+		</form>
+
+		<h3>Delete OBject</h3>
+		<form action="object_controler.php?flag=delete" method="POST">
+			oid<input type="text" name="oid" /></br>
+			<input type="submit"/>
+		</form>
+
+		<h3>Update OBject</h3>
+		<form action="object_controler.php?flag=update" method="POST">
+			oid<input type="text" name="oid" /></br>
+			description<input type="text" name="description"/></br>
+			name<input type="text" name="name"/></br>
+			<input type="submit"/>
+		</form>
+
+	</body>
+</html>
