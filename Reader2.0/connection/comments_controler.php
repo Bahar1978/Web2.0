@@ -1,5 +1,6 @@
 <?php
-include ("db_connection.php");
+session_start();
+include_once ("db_connection.php");
 header("Content-Type:text/plain");
 
 if (isset($_REQUEST['flag']))
@@ -14,9 +15,10 @@ switch ($flag) {
 
 	case 'create':
 		$description = $_POST['description'];
-		$uid = (int)($_POST['uid']);
-		$oid = (int)($_POST['oid']);
+		$uid = (int)($_SESSION['uid']);
+		$oid = (int)($_REQUEST['oid']);
 		$result = comments_Create($description,$uid,$oid);
+		header("Location:../object.php?oid=$oid");
 		break;
 	
 	case 'delete':
@@ -52,7 +54,7 @@ function comments_Create($description,$uid,$oid)
 {
 	$since = date("Y-m-d H:i:s");
 	$mysql = Database::GetConnection();
-	$query = "insert into Comments values(NULL,'$description',$uid,$oid,'$since')";
+	$query = "insert into Comments values(NULL, '$description', $uid, $oid, '$since')";
 	$result = mysql_query($query);
 	Database::CloseConnection($mysql);
 	return $result;

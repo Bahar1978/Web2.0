@@ -1,8 +1,10 @@
 <?php
-include ("db_connection.php");
+session_start();
+include_once ("db_connection.php");
+include_once("db_query.php");
+
+
 header("Content-Type:text/plain");
-
-
 if (isset($_REQUEST['flag']))
 {
 	$flag = $_REQUEST['flag'];
@@ -17,8 +19,8 @@ switch ($flag) {
 		break;
 
 	case 'get':
-		$groupName = $_POST['groupName'];
-		$result = group_Get($groupName);
+		$gid = $_POST['gid'];
+		$result = group_Get($gid);
 		break;
 
 	case 'check':
@@ -32,9 +34,9 @@ switch ($flag) {
 		break;
 
 	case 'addMember':
-		$uid = (int)($_POST['uid']);
+		$username = $_POST['username'];
 		$gid = (int)($_POST['gid']);
-		$result = group_AddMember($uid,$gid);
+		$result = group_AddMemberByName($username,$gid);
 		break;
 
 	case 'deleteMember':
@@ -59,10 +61,31 @@ switch ($flag) {
 		$result = groups_Number();
 		break;
 
+	case 'query':
+		$result = group_Query();
+		$result = json_encode($result);
+		print $result;
+		return;
+		break;
+
+	case 'manageQuery':
+		$result = json_encode(group_ManageQuery());
+		print $result;
+		return;
+		break;	
+
+	case 'memberQuery':
+		$gid = $_POST['gid'];
+		$result = json_encode(group_MemberQuery($gid));
+		print $result;
+		return;
+		break;
+
 	default:
 		break;
 }
 print_r($result);
+
 
 function groups_Number()
 {
@@ -90,10 +113,10 @@ function group_Create($uid,$groupName,$description)
 	return $gid;
 }
 
-function group_Get($groupName)
+function group_Get($gid)
 {
 	$mysql = Database::GetConnection();
-	$query = "select * from Groups where name='$groupName'";
+	$query = "select * from Groups where gid='$gid'";
 	$result = mysql_query($query,$mysql);
 	$array = mysql_fetch_array($result);
 	Database::CloseConnection($mysql);
@@ -186,5 +209,63 @@ function group_DeleteMember($uid,$gid)
 	$result = mysql_query($query,$mysql);
 	Database::CloseConnection($mysql);
 	return $result;
+}
+
+
+function group_Query()
+{
+	$uid = (int)($_SESSION['uid']);
+	$query = "select * from UsersGroupsRelation where uid=$uid";
+	$temp = DBSelectResult($query,1);
+
+	$result = array();
+	$number = count($temp);
+	for($i = 0; $i < $number; $i ++)
+	{
+		$gid = (int)$temp[$i]['gid'];
+		$query = "select * from Groups where gid=$gid";
+		$result[count($result)] = DBSelectResult($query,0);
+	}
+
+	return $result;
+}
+
+function group_ManageQuery()
+{
+	$uid = (int)($_SESSION['uid']);
+	$query = "select *from UsersGroupsManage where uid=$uid";
+	$temp = DBSelectResult($query,1);
+
+	$result = array();
+	$number = count($temp);
+	for ($i = 0; $i < $number; $i ++)
+	{
+		$gid = (int)$temp[$i]['gid'];
+		$query = "select *from Groups where gid=$gid";
+		$result[$i] = DBSelectResult($query,0);
+	}
+
+	return $result;
+}
+
+
+function group_MemberQuery($gid)
+{
+	$query = "select U.uid, U.username " . 
+			"from UsersGroupsRelation R,UsersGroupsManage M,Users U " . 
+			"where R.gid=$gid and M.gid=$gid and R.uid <> M.uid and " . 
+			"U.uid = R.uid";
+	return DBSelectResult($query,1);
+}
+
+function group_AddMemberByName($username,$gid)
+{
+	$query = "select * from Users where username='$username'";
+	$temp = DBSelectResult($query,0);
+	if (!is_null($temp['uid']))
+	{
+		return group_AddMember($temp['uid'],$gid);
+	}
+	return false;
 }
 ?>

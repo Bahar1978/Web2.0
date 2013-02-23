@@ -1,7 +1,7 @@
 <?php
 include ("db_connection.php");
 header("Content-Type:text/plain");
-
+session_start();
 if (isset($_REQUEST['flag']))
 {
 	$flag = $_REQUEST['flag'];
@@ -10,14 +10,19 @@ $result;
 switch ($flag) {
 	case 'number':
 		$result = notes_Number();
+		print_r($result);
 		break;
 
 	case 'create':
 		$description = $_POST['description'];
 		$title = $_POST['title'];
-		$uid = (int)($_POST['uid']);
-		$oid = (int)($_POST['oid']);
-		$result = notes_Create($description,$title,$uid,$oid);
+		$uid = (int)($_SESSION['uid']);
+		$oid = (int)($_REQUEST['oid']);
+		$public = 0;
+         
+        if(isset($_POST['isPublic'])) $public = 1; 
+		$result = notes_Create($description,$title,$uid,$oid,$public);
+		header("Location:../friendsnote.php?oid=$oid");
 		break;
 	
 	case 'delete':
@@ -29,13 +34,14 @@ switch ($flag) {
 		$nid = (int)($_POST['nid']);
 		$description = $_POST['description'];
 		$title = $_POST['title'];
+        
 		$result = notes_Update($nid,$title,$description);
 		break;
 
 	default:
 		break;
 }
-print_r($result);
+
 
 function notes_Number()
 {
@@ -49,11 +55,11 @@ function notes_Number()
 	return $result;
 }
 
-function notes_Create($description,$title,$uid,$oid)
+function notes_Create($description,$title,$uid,$oid,$public)
 {
 	$since = date("Y-m-d H:i:s");
 	$mysql = Database::GetConnection();
-	$query = "insert into Notes values(NULL,'$description','$title',$uid,$oid,'$since')";
+	$query = "insert into Notes values(NULL,'$description','$title',$uid,$oid,'$since',$public)";
 	$result = mysql_query($query);
 	Database::CloseConnection($mysql);
 	return $result;

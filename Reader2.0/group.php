@@ -1,19 +1,19 @@
 <?php
+session_start();
+include_once("connection/db_query.php");
 
+$gid = $_GET['gid'];
+$array = GetGroupInfo($gid);
 ?>
 <html>
 	<head>
 		<meta charset="utf-8"/>
 		<title>MyNotes</title>
-		<link href="group.php" type="text/css" rel="stylesheet"/>
 	</head>
 
 	<body>
 		<div class="bannerDiv">
 			<span class="title">MYNotes</span>
-			<span><a herf="">社区</a></span>
-			<span><a herf="friend.php">好友</a></span>
-			<span><a herf="group.php">小组</a></span>
 		</div>
 
 		<div class="informationDiv">
@@ -36,8 +36,8 @@
 					<img src="Image/userImage.png"/>
 				</div>
 				<div>
-					<span>小组名：中二病</span></br>
-					<span>小组内容：大家都是中二病</span>
+					<span>小组名：<?=$array['name']?></span></br>
+					<span>小组内容：<?=$array['description']?></span>
 				</div>
 			</div>	
 
@@ -55,17 +55,15 @@
 				<span>2012.12.1</span>
 			</div>
 		</div>
-	
-		<div class="selectDiv">
-			<p>选择小组</p>
-
-			<div>
-				<a href="">中二病</a></br>
-				<a href="">K</a></br>
-				<a href="">LittleBusters</a></br>
-			</div>	
-		</div>
-
 	</body>
 
 </html>
+
+<?php
+function GetGroupInfo($gid)
+{
+	$query = "select *from Groups where gid=$gid";
+	return DBSelectResult($query,0);
+}
+
+?>

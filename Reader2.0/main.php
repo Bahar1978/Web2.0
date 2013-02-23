@@ -9,7 +9,7 @@
 	</head>
 	<body>
 <?php
-include ("connection/user_controler.php");
+include_once ("connection/user_controler.php");
 
 
 	if (checkMd5($_COOKIE['sessionId']) )
@@ -34,7 +34,6 @@ include ("connection/user_controler.php");
 			setcookie("username",$username,$expireTime);
 			setcookie("email",$array['email'],$expireTime);
 			setcookie("sessionId",getMd5($array['uid']),$expireTime);
-
 			$_SESSION['uid'] = $array['uid'];
 
 			header("Location:friend.php");

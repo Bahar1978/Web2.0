@@ -169,6 +169,7 @@ function friends_Get()
 		$result[$number] = array();
 		$result[$number]['username'] = $array['username'];
 		$result[$number]['email'] = $array['email'];
+		$result[$number]['uid'] = $array['uid'];
 	}
 
 	Database::CloseConnection($mysql);

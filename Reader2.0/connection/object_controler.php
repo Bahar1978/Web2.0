@@ -1,13 +1,11 @@
 <?php
-include ("db_connection.php");
-
-
+include_once ("db_connection.php");
 
 if (isset($_REQUEST['flag']))
 {
 	$flag = $_REQUEST['flag'];
 }
-$result;
+$result = 0;
 switch ($flag) {
 	case 'create':
 		$description = $_POST['description'];
@@ -31,8 +29,8 @@ switch ($flag) {
 	default:
 		break;
 }
-print_r($result);
 
+print_r($result);
 
 function object_Create($name,$description,$uid)
 {
@@ -62,5 +60,6 @@ function object_Update($oid,$name,$description)
 	Database::CloseConnection($mysql);
 	return $result;
 }
+
 
 ?>

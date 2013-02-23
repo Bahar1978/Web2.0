@@ -1,6 +1,6 @@
 <?php
+session_start();
 include ("db_connection.php");
-
 if (isset($_REQUEST['flag']))
 {
 	$flag = $_REQUEST['flag'];
@@ -9,9 +9,10 @@ $result;
 switch ($flag) {
 	case 'create':
 		$description = $_POST['description'];
-		$uid = (int)($_POST['uid']);
-		$oid = (int)($_POST['oid']);
+		$uid = (int)($_SESSION['uid']);
+		$oid = (int)($_REQUEST['oid']);
 		$result = tag_Create($description,$uid,$oid);
+		header("Location:../object.php?oid=$oid");
 		break;
 	
 	case 'delete':
@@ -55,8 +56,7 @@ function tag_Find($tid)
 	$result = mysql_query($query,$mysql);
 
 	$number = mysql_num_rows($result);
-	$array = [];
-
+	$array = array();
 	for ($i = 0;$i < $number; $i ++)
 	{
 		$row = mysql_fetch_array($result);
@@ -67,4 +67,6 @@ function tag_Find($tid)
 	Database::CloseConnection($mysql);
 	return $array;
 }
+
+
 ?>

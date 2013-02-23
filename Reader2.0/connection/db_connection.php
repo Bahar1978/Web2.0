@@ -23,5 +23,33 @@ class Database{
 			mysql_close($mysql);
 		}
 	}
+    
+    static function selectFromDatabase($query){
+        
+        $mysql = Database::GetConnection();
+        $resources = mysql_query($query);
+        $result = array();
+        $temp   = array();
+        $counter = 0;
+
+        if($resources != false)
+        while($temp = mysql_fetch_array($resources)){
+             $result[$counter] = $temp;
+             $counter = $counter + 1;
+        }
+        Database::CloseConnection($mysql);
+
+        return $result;
+    }
+
+    static function getUserName($uid){
+       $mysql  = Database::GetConnection();
+       $query  = "select username from Users where uid=$uid"; 
+       $result = mysql_query($query,$mysql);
+       $array  = mysql_fetch_array($result);
+       Database::CloseConnection($mysql);
+       return $array[0];
+   }
+
 }
 ?>

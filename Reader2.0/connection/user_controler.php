@@ -1,5 +1,7 @@
 <?php
+session_start();
 include ("db_connection.php");
+include ("db_query.php");
 header("Content-Type:text/plain");
 
 if (isset($_REQUEST['flag']))
@@ -35,6 +37,12 @@ switch ($flag) {
 
 	case 'number':
 		$result = user_Number();
+		break;
+
+	case 'query':
+		$result = json_encode(user_Query());
+		print $result;
+		return;
 		break;
 
 	default:
@@ -103,7 +111,7 @@ function user_Login($username,$password)
 function user_Delete($uid)
 {
 	$mysql = Database::GetConnection();
-	$query = "delete from Users where uid='uid'";
+	$query = "delete from Users where uid=$uid";
 	$result = mysql_query($query,$mysql);
 	Database::CloseConnection($mysql);
 	return $result;
@@ -116,7 +124,7 @@ function user_EditInfo($username,$password,$email)
 	$query = NULL;
 	if ($password)
 	{
-		$query = "update Users set password='$password'";
+		$query = "update Users set password='$password' ";
 		if ($email)
 		{
 			$query .= ", email='$email' ";
@@ -135,5 +143,17 @@ function user_EditInfo($username,$password,$email)
 	}
 	Database::CloseConnection($mysql);
 	return $result;
+}
+
+
+function user_Query()
+{
+	$uid = $_SESSION['uid'];
+	$query = "select * from Users where uid=$uid";
+	$temp = DBSelectResult($query,0);
+	if ($temp == NULL)	return NULL;
+
+	$query = "select * from Users where username<>'root'";
+	return DBSelectResult($query,1);
 }
 ?>

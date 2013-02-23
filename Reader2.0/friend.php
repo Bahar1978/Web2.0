@@ -6,8 +6,8 @@
 	<head>
 		<meta charset="utf-8"/>
 		<title>MyNotes</title>
-		<script src="friend.js"></script>
-		<script src="prototype.js"/></script>
+		<script src="js/friend.js"></script>
+		<script src="js/prototype.js"/></script>
 	</head>
 	<body>
 
@@ -30,16 +30,20 @@
 				
 		?>
 
+		<!--标题栏-->
 		<div class="bannerDiv">
 			<span class="title">MYNotes</span>
-			<span><a herf="">笔记</a></span>
-			<span><a herf="friend.php">好友</a></span>
-			<span><a herf="group.php">小组</a></span>
 		</div>
 
+		<!--用户信息栏-->
 		<div class="informationDiv">
 			<div>
-				<img src="Image/userImage.png"/>
+				<?php
+					if (file_exists("user/" . $_COOKIE['username'] . ".jpg"))
+						$src = "user/" . $_COOKIE['username'] . ".jpg";
+					else $src = "Image/userImage.png"; 
+				?>
+				<img src="<?=$src?>"/>
 			</div>
 			<div>
 				<span>用户名:<?=$_COOKIE['username']?></span></br>
@@ -48,57 +52,36 @@
 			</div>
 		</div>
 
-
-		<div class="main">
-			<p>好友动态</p>
-
-			<div>
-				<div>
-					<img src="Image/userImage.png"/>
-				</div>
-				<div>
-					<p>XXX添加了评论到XX</p>
-					<p>我是评论。。。。。</p>
-				</div>
-			</div>	
-
-		</div>
-
-		<div id="friendList">
-			<p>我的好友</p>
-
-			<div>
-				<div>
-					<img src="Image/userImage.png"/>
-				</div>
-				<div>
-					<span>csy</span>
-					<span>csy@qq.com</span>
-				</div>
-			</div>
-
-			<div>
-				<div>
-					<img src="Image/userImage.png"/>
-				</div>
-				<div>
-					<span>txx</span>
-					<span>txx@qq.com</span>
-				</div>
-			</div>
-
-		</div>
-	
-		<div class="addDiv">
-			<input type="text" id="searchContent" value="好友姓名"/>			
-			<button id="addButton">添加好友</button></br>
-			<span id="warning"></span>
-		</div>
-
-
-		<div id="noteDiv"/>
-		<?php
+		<!--好友功能-->
+		<div>
+			<!--好友列表-->
+			<div id="friendList"></div>
 		
+			<!--添加好友栏-->
+			<div class="addDiv">
+				<input type="text" id="searchContent" value="好友姓名"/>			
+				<button id="addButton">添加好友</button></br>
+				<span id="warning"></span>
+			</div>
+
+			<!--好友添加通知栏-->
+			<div id="noteDiv"></div>
+		</div>
+ 
+ 		<!--小组功能-->
+ 		<div>
+			<!--小组列表-->
+			<div id="groupList"></div>
+
+			<!--创建小组-->
+			<a href="group_create.php">创建小组</a></br>
+
+			<!--管理小组-->
+			<div id="groupManageList"></div>
+		</div>
+
+		<?php
+
 			}
 			
 		?>

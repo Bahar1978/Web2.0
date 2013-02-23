@@ -6,8 +6,8 @@
 	<head>
 		<meta charset="utf-8"/>
 		<title>MyNotes</title>
-		<script src="login.js"></script>
-		<script src="prototype.js"/></script>
+		<script src="js/login.js"></script>
+		<script src="js/prototype.js"/></script>
 	</head>
 	<body>
 <?php
@@ -36,6 +36,7 @@
 				记住我<input type="checkbox" name="remember"/>
 				<input type="submit" value="登录"/>
 			</form>
+			<a href="manage_login.php">我是管理员</a>
 		</div>
 
 	<?php
